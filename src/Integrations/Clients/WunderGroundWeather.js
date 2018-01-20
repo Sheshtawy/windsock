@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const request = require('request-promise-native');
-const BaseClient = require('./BaseClient');
+const BaseClient = require('../BaseClient');
 
 class WunderGroundWeather extends BaseClient {
 
