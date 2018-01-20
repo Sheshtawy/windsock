@@ -8,13 +8,17 @@ class WunderGroundWeather extends BaseClient {
         super(config);
 
         if(!_.isString(config.key)) {
-            throw new Error('Invalid or missing WonderGroundWeather api key');
+            throw new BaseClient.Errors.ClientIllegalArgumentError(
+                'Invalid or missing WonderGroundWeather api key'
+            );
         }
     }
 
     getConditionByCity(city, state = '', country = '') {
         if(!_.isString(city)) {
-            throw new Error('Invalid city name. Make sure it\'s a non-empty string');
+            throw new BaseClient.Errors.ClientIllegalArgumentError(
+                'Invalid city name. Make sure it\'s a non-empty string'
+            );
         }
 
         const params = [];
