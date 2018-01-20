@@ -34,6 +34,8 @@ class WunderGroundWeather extends BaseClient {
                 if('results' in response && _.isArray(response.results)) {
                     return _.map(response.results, item => this._extendResponse(item.l));
                 }
+
+                return response;
             });
     }
 
