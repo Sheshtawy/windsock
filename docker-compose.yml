@@ -1,7 +1,7 @@
 version: '3'
 services:
   node:
-    container_name: weather-bot-server
+    container_name: windsock-server
     tty: true
     stdin_open: true
     depends_on: 
