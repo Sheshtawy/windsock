@@ -1,6 +1,7 @@
 const _ = require('lodash');
 
-const WunderGroundWeather = require('../../src/Integrations/WunderGroundWeather');
+const BaseClient = require('../../src/Integrations/BaseClient');
+const WunderGroundWeather = require('../../src/Integrations/Clients').WunderGroundWeather;
 const expect = require('../Resources/chai').expect;
 
 describe('WunderGroundWeather', () => {
@@ -9,7 +10,6 @@ describe('WunderGroundWeather', () => {
         aWunderGroundWeatherClient = new WunderGroundWeather({
             key: process.env.WUNDERGROUND_API_KEY,
         });
-
     });
 
     describe('getConditionByCity', () => {
@@ -58,6 +58,14 @@ describe('WunderGroundWeather', () => {
                 })
         );
 
-        it('should throw error if missing city name');
+        it('should throw error if missing city name', () => {
+            const fn = () => aWunderGroundWeatherClient.getConditionByCity();
+
+            expect(fn).to.throw(Error).that.is.an.instanceOf(
+                BaseClient.Errors.ClientIllegalArgumentError
+            ).and.to.have.property('message').that.equals(
+                'Invalid city name. Make sure it\'s a non-empty string'
+            );
+        });
     });
 });
