@@ -1,5 +1,13 @@
 const _ = require('lodash');
 
+class ClientIllegalArgumentError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'ClientIllegalArgument';
+    }
+
+}
+
 class ClientInvalidConfigError extends Error {
 
     constructor(message) {
@@ -27,4 +35,4 @@ class BaseClient {
 }
 
 module.exports = BaseClient;
-module.exports.Errors = { ClientInvalidConfigError };
+module.exports.Errors = { ClientInvalidConfigError, ClientIllegalArgumentError };
